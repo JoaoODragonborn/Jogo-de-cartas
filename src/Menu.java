@@ -1,7 +1,6 @@
-package jogo;
 import java.util.Scanner;
   
-public class Main {
+public class Menu {
 
 	public static Carta[] criaCartas(int loops){
     
@@ -52,12 +51,5 @@ public class Main {
 	 
 		 }
 	} // Fim do menu
-
-
-	public static void main(String[] args) {
-  
-		menu();
-    
-	} // Fim da main
 	
 } // Fim da classe

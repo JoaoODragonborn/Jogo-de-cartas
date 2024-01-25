@@ -1,5 +1,3 @@
-package jogo;
-
 public class Carta{
 
 	// Counter é a carta que essa carta vence;
