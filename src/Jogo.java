@@ -4,8 +4,6 @@ import java.util.ArrayList;
 /*
  * TO-DO List:
  *
- * Tirar o println da getRandom();
- * Retirar a Main
  * Mudar de "int" para "Carta" no getCards e no disorderCards;
  * Escrever o getCards();
  *
@@ -27,28 +25,29 @@ class Jogo {
 	/* 
 	 * Gera um valor aleatório com valores de 0 a (cards.size() - subtract);
 	 * Feita apenas retornar um valor aleatório para a disorderCards();
-	 * O argumento deve ser a quantidade de números a menos do numero de cartas;
+	 * 
 	 */
-	private static int getRandom(int subtract){
+	private static int getRandom(){
 
-		int instant = Instant.now().getNano() % (cards.size() - subtract);
-		System.out.printf("Instant: %d %n", instant);
+		int instant = Instant.now().getNano() % (cards.size());
 		return instant;
 	}
 
-	// Embaralha as cartas do vetor de cartas;
+	/* Embaralha as cartas do vetor de cartas;
+	 * Pega um elemento de um ArrayList de indice pseudoaleatorio fornecido por getRandom()
+	 * e joga dentro de outro ArrayList de indice ordenado;
+	 */
 	private static void disorderCards(){
 
 		ArrayList<Integer> temp = new ArrayList<Integer>();
-
-		for (int i = 0; i < cards.size(); i++){
-			temp.add(cards.remove((int)getRandom(i)));
-			print();
+		int times = cards.size();
+		for (int i = 0; i < times; i++){
+			temp.add(cards.remove(getRandom()));
 		}
-
 		cards = temp;
 	}
-
+	
+	// Imprime todos os elementos do ArrayList cards em uma linha;
 	public static void print(){
 		 
 		for (int i : cards){
@@ -57,11 +56,10 @@ class Jogo {
 		System.out.println();
 	}
 	
+	// Teste dos métodos;
 	public static void main(String[] args) {
 	
-		System.out.println("Hello World");
 		getCards(12);
-		print();
 		disorderCards();
 		print();
     
