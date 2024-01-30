@@ -1,24 +1,45 @@
 import java.time.Instant;
 import java.util.ArrayList;
-
-/*
- * TO-DO List:
- *
- * Mudar de "int" para "Carta" no getCards e no disorderCards;
- * Escrever o getCards();
- *
- * */
+import java.util.Scanner;
+import java.nio.file.Paths;
+import java.io.IOException;
+import java.util.NoSuchElementException;
+import java.lang.IllegalStateException;
 
 class Jogo {
   
 	//private static Carta[] cards;
-	private static ArrayList<Integer> cards = new ArrayList<Integer>();
+	private static ArrayList<Carta> cards = new ArrayList<Carta>();
+	private static Scanner input;
   
 	// Coleta as cartas no arquivo cartas.txt e atribui a variavel estatica;
-	private static void getCards(int n) {
+	private static void openFile() {
 
-		for(Integer i = 0; i < n; i++){
-			cards.add(i);
+		try{
+		input = new Scanner(Paths.get("../doc/cartas.txt"));
+		} catch (IOException ioe){
+			System.out.println("Não foi possível encontrar as cartas. Confira se \"cartas.txt\" está dentro da pasta doc e tente jogar novamente.");
+			System.exit(1);
+		}
+	}
+
+	private static void collectCards(){
+		try{
+			while(input.hasNext()){
+				cards.add(new Carta(input.next(), input.next(), input.nextInt(), input.next(), input.nextInt()));
+			}
+		} catch(NoSuchElementException nsee){
+			System.out.println("Arquivo \"cartas.txt\" mal formatado. Confira se as informações estão organizadas em todo o arquivo.");
+			System.exit(2);
+		} catch (IllegalStateException ise){
+			System.out.println("Erro na leitura das cartas. Abortando.");
+			System.exit(2);
+		}
+	}
+
+	private static void closeFile(){
+		if(input != null){
+			input.close();
 		}
 	}
 	
@@ -39,7 +60,7 @@ class Jogo {
 	 */
 	private static void disorderCards(){
 
-		ArrayList<Integer> temp = new ArrayList<Integer>();
+		ArrayList<Carta> temp = new ArrayList<Carta>();
 		int times = cards.size();
 		for (int i = 0; i < times; i++){
 			temp.add(cards.remove(getRandom()));
@@ -50,8 +71,8 @@ class Jogo {
 	// Imprime todos os elementos do ArrayList cards em uma linha;
 	public static void print(){
 		 
-		for (int i : cards){
-			System.out.printf("%d ", i);
+		for (Carta i : cards){
+			System.out.printf("%s \n", i.getName());
 		}
 		System.out.println();
 	}
@@ -59,9 +80,10 @@ class Jogo {
 	// Teste dos métodos;
 	public static void main(String[] args) {
 	
-		getCards(12);
+		openFile();
+		collectCards();
+		closeFile();
 		disorderCards();
 		print();
-    
   	}
 }
