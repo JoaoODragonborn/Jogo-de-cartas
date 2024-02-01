@@ -1,3 +1,28 @@
-Arcana Null 10 Magia 7 
-Plasma Null 10 Magia 6 
-Excaliur Caldeirao 200 Lendaria 0 
+Luz Escudo_Magico 10 Magia 9
+Escuridão Escudo_Magico 10 Magia 8
+Arcana Escudo_Magico 10 Magia 7 
+Plasma Escudo_Magico 10 Magia 6 
+Raio Escudo_Magico 10 Magia 5
+Fogo Agua 10 Magia 4
+Agua Plantae 10 Magia 4
+Plantae Fogo 10 Magia 4
+Excalibur Caldeirao 200 Lendaria 0 
+Revolver Zero 999 Lendaria 0
+Shuriken Guizo 300 Lendaria 0
+Espada_Tripla Quebra_espada 500 Lendaria 0
+Caldeirao null 0 Relicario 
+Quebra_Espada null 0 Relicario
+Guizo null 0 Relicario 
+Vara_de_Pesca null 0 Relicario
+Escudo_Magico null 0 Relicario 11
+Escudo null 0 Relicario
+Zero null -1 Arma_Branca 0
+Gladio Escudo 1 Arma_Branca 0
+Katana Escudo 2 Arma_Branca 0
+Marreta Escudo 3 Arma_Branca 0
+Machado_Leviathan Escudo 4 Arma_Branca 0
+Elucidator Escudo 5 Arma_Branca 0
+Foice Escudo 6 Arma_Branca 0
+Guarda_Chuva Escudo 7 Arma_Branca 0
+Arco Escudo 8 Arma_Branca 0
+Besta Escudo 9 Arma_Branca 0
