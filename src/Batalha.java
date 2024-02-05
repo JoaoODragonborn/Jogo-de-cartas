@@ -1,11 +1,46 @@
 import java.util.Dictionary;
 import java.util.Hashtable;
+import java.util.ArrayList;
 public class Batalha{
 
 /*
  * TO-DO List:
  * 
 */
+	public static void printDeque(ArrayList<Carta> cards){
+		int index;
+		int qtdCartas = 7;
+		int qtdCartasPorLinha = 4;
+		String traco = "-";
+		// Duas linhas de cartas;
+		for(int j = 0; j < 2; j++){
+			// Parte de cima das cartas;
+			for(int i = 0; i < qtdCartasPorLinha; i++){
+				System.out.printf("|%s| ", traco.repeat(23)); 
+			}
+			// Informações das cartas;
+			for(index = 0; index < qtdCartasPorLinha; index++){
+				System.out.printf("|%-19s %3d|", cards.get(index).getName(), cards.get(index).getPower());
+			}
+			// Parte de baixo das cartas (msm de cima);
+			for(int i = 0; i < qtdCartasPorLinha; i++){
+				System.out.printf("|%s| ", traco.repeat(23)); 
+			}
+			// Número da carta a ser escolhida pelo jogador;
+			for(int i = 0; i < qtdCartas; i++){
+				if(j == 0){
+					// Mostra os números da primeira linha;
+					System.out.printf("%d", i + 1); 
+				} else {
+					// Mostra os números da segunda linha;
+					System.out.printf("%13d%s", i + 5, " ".repeat(12)); 
+				}
+			}
+		// A primeira linha terá 4 cartas e a segunda terá 3 cartas;
+		qtdCartasPorLinha--;
+		}
+
+	}
 
     public static void batalha(){}
   
@@ -70,6 +105,6 @@ public class Batalha{
     }
 
     public static void main(String[] args){
-      System.out.println(confronto(new Carta("Vara_de_Pesca", null, 0, "Relicario", 0), new Carta("Excalibur", "Caldeirao", 300, "Lendaria", 0), new Carta("Shuriken", "Guizo", 200, "Lendaria", 0)).getName());
+    	//printDeque();
     }
 }

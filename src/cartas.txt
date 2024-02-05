@@ -10,12 +10,12 @@ Excalibur Caldeirao 200 Lendaria 0
 Revolver Zero 999 Lendaria 0
 Shuriken Guizo 300 Lendaria 0
 Espada_Tripla Quebra_espada 500 Lendaria 0
-Caldeirao null 0 Relicario 
-Quebra_Espada null 0 Relicario
-Guizo null 0 Relicario 
-Vara_de_Pesca null 0 Relicario
+Caldeirao null 0 Relicario 0
+Quebra_Espada null 0 Relicario 0
+Guizo null 0 Relicario 0
+Vara_de_Pesca null 0 Relicario 0
 Escudo_Magico null 0 Relicario 11
-Escudo null 0 Relicario
+Escudo null 0 Relicario 0 
 Zero null -1 Arma_Branca 0
 Gladio Escudo 1 Arma_Branca 0
 Katana Escudo 2 Arma_Branca 0

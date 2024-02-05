@@ -6,9 +6,8 @@ import java.io.IOException;
 import java.util.NoSuchElementException;
 import java.lang.IllegalStateException;
 
-class Jogo {
+class Baralho {
   
-	//private static Carta[] cards;
 	private static ArrayList<Carta> cards = new ArrayList<Carta>();
 	private static Scanner input;
   
@@ -58,17 +57,17 @@ class Jogo {
 	 * Pega um elemento de um ArrayList de indice pseudoaleatorio fornecido por getRandom()
 	 * e joga dentro de outro ArrayList de indice ordenado;
 	 */
-	private static void disorderCards(){
+	public static ArrayList<Carta> disorderCards(ArrayList<Carta> cards){
 
 		ArrayList<Carta> temp = new ArrayList<Carta>();
 		int times = cards.size();
 		for (int i = 0; i < times; i++){
 			temp.add(cards.remove(getRandom()));
 		}
-		cards = temp;
+		return temp;
 	}
 	
-	// Imprime todos os elementos do ArrayList cards em uma linha;
+	/* Imprime todos os elementos do ArrayList cards em uma linha;
 	public static void print(){
 		 
 		for (Carta i : cards){
@@ -76,14 +75,14 @@ class Jogo {
 		}
 		System.out.println();
 	}
-	
-	// Teste dos métodos;
-	public static void main(String[] args) {
+	*/
+
+	// Retorna o ArrayList das cartas após a coleta no arquivo e a desordenação;
+	public static ArrayList<Carta> getCards() {
 	
 		openFile();
 		collectCards();
 		closeFile();
-		disorderCards();
-		print();
+		return disorderCards(cards);
   	}
 }
