@@ -34,7 +34,9 @@ public class Menu {
 	private static void scanOption(){
 		
 		Scanner entrada = new Scanner(System.in);
-
+    System.out.println("Bem vindo ao jogo de cartas de viado. Você quer jogar agora?\n" + 
+			"1 - Sim!\n2 - Não :(");
+    
 		try{
 			option = entrada.nextInt(); 
 
@@ -45,7 +47,6 @@ public class Menu {
 		}
 		
 		if (option != 1 || option != 2){
-			System.out.println(option != 1 || option != 2);
 			brincadeira();		
 			scanOption();
 		}
@@ -55,19 +56,15 @@ public class Menu {
 	}
 	
 	private static void menu(){
-  
-		System.out.println("Bem vindo ao jogo de cartas de viado. Você quer jogar agora? \n" + 
-			"1 - Sim!\n2 - Não :(");
-    		
+  	int parImpar;
 		scanOption();
 		
 		if (option == 1){
-     			//Joguinho!!!
-
+      Batalha.batalha();
 		} else {
 			System.out.println("Até mais!\n");
-	 
 		}
+    
 	} // Fim do menu
 	
 	public static void main(String[] args){

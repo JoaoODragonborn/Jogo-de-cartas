@@ -47,7 +47,7 @@ class Baralho {
 	 * Feita apenas retornar um valor aleatório para a disorderCards();
 	 * 
 	 */
-	private static int getRandom(){
+	public static int getRandom(){
 
 		int instant = Instant.now().getNano() % (cards.size());
 		return instant;
