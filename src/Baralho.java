@@ -47,7 +47,7 @@ class Baralho {
 	 * Feita apenas retornar um valor aleatório para a disorderCards();
 	 * 
 	 */
-	public static int getRandom(){
+	public static int getRandom(ArrayList<Carta> cards){
 
 		int instant = Instant.now().getNano() % (cards.size());
 		return instant;
@@ -62,7 +62,7 @@ class Baralho {
 		ArrayList<Carta> temp = new ArrayList<Carta>();
 		int times = cards.size();
 		for (int i = 0; i < times; i++){
-			temp.add(cards.remove(getRandom()));
+			temp.add(cards.remove(getRandom(cards)));
 		}
 		return temp;
 	}

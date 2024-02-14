@@ -3,6 +3,8 @@ import java.util.InputMismatchException;
   
 public class Menu {
 
+
+	static Scanner entrada = new Scanner(System.in);
 	static int option;
 	static int tries = 0;
 	
@@ -33,7 +35,6 @@ public class Menu {
 	
 	private static void scanOption(){
 		
-		Scanner entrada = new Scanner(System.in);
     System.out.println("Bem vindo ao jogo de cartas de viado. Você quer jogar agora?\n" + 
 			"1 - Sim!\n2 - Não :(");
     
@@ -46,13 +47,10 @@ public class Menu {
 			scanOption();
 		}
 		
-		if (option != 1 || option != 2){
+		if (!(option == 1 || option == 2)){
 			brincadeira();		
 			scanOption();
 		}
-		//if(entrada != null){
-		entrada.close();	
-		//}
 	}
 	
 	private static void menu(){
@@ -63,12 +61,14 @@ public class Menu {
       Batalha.batalha();
 		} else {
 			System.out.println("Até mais!\n");
+			entrada.close();
 		}
     
 	} // Fim do menu
 	
 	public static void main(String[] args){
 		menu();
+
 	}
 	
 } // Fim da classe
