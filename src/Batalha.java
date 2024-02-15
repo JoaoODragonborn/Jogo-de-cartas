@@ -20,6 +20,7 @@ public class Batalha{
     static private int partidas = 0;
     static private int cartaEscolhida;
     static private final String traco = "-";
+	static private int qtdCartas;
   
     private static void embaralharCartas(){
     	if(partidas == 0){  
@@ -27,6 +28,7 @@ public class Batalha{
 	    } else {
     		cartas = Baralho.disorderCards(cartas);
     	}
+		qtdCartas = 7;
 	}
 
   	private static void distribuirCartas(){
@@ -65,69 +67,68 @@ public class Batalha{
     		scanContinuar();
 	    }
 	}
-  
-	public static void printDeque(){
-		int index;
-		int qtdCartas = 7;
-		int qtdCartasPorLinha = 4;
-		System.out.println("\nEscolha sua carta:");
+
+	// Serve só pra imprimir linha de cartas dentro do printDeque();
+	private static void imprimeLinha(int cartasPorLinhaAMenos, int limiteCartasPorLinha){
 	
-		// Duas linhas de cartas;
-		for(int j = 0; j < 2; j++){
+		
+		// Parte de cima das cartas;
+		for(int i = 0; i < qtdCartas - cartasPorLinhaAMenos && i <= limiteCartasPorLinha; i++){
+			System.out.printf("|%s| ", traco.repeat(23)); 
+		}
 	
-			// Parte de cima das cartas;
-			for(int i = 0; i < qtdCartasPorLinha; i++){
-				System.out.printf("|%s| ", traco.repeat(23)); 
-			}
-	
-			System.out.println();
-	
-			// Informações das cartas;
-			for(index = 0; index < qtdCartasPorLinha; index++){
-	
-				if(j == 0){	
-					System.out.printf("|%-19s %-3d| ", jogador.get(index).getName(), jogador.get(index).getPower());
-				} else {
-					System.out.printf("|%-19s %-3d| ", jogador.get(index + 4).getName(), jogador.get(index+ 4).getPower());
-				
-				}
-			}
+		System.out.println();
 		
-			System.out.println();
+		// Informação das cartas
+		for(int i = 0; i < qtdCartas - cartasPorLinhaAMenos && i <= limiteCartasPorLinha; i++){
 		
-			// Parte de baixo das cartas (msm de cima);
-			for(int i = 0; i < qtdCartasPorLinha; i++){
-		
-					System.out.printf("|%s| ", traco.repeat(23)); 
-			}
-		
-			System.out.println();
-		
-			// Número da carta a ser escolhida pelo jogador;
-			for(int i = 1; i <= qtdCartas; i++){
-		
-				if(j == 0){
-					// Mostra os números da primeira linha;
-					System.out.printf("%13d%s", i , " ".repeat(12)); 
-		
-				} else {
-					// Mostra os números da segunda linha;
-					System.out.printf("%13d%s", i + 4, " ".repeat(12)); 
-				}
-		
-				if (i == 4){
-					System.out.println();
-					break;
-				}
-			}
-		
-			System.out.println();
-		
-		// A primeira linha terá 4 cartas e a segunda terá 3 cartas;
-		qtdCartasPorLinha--;
+			System.out.printf("|%-19s %-3d| ", jogador.get(i + cartasPorLinhaAMenos).getName(), jogador.get(i + cartasPorLinhaAMenos).getPower());
+
 		}
 
-	} // Fim do método printDeque()
+		System.out.println();
+
+		// Parte de baixo das cartas;
+		for(int i = 0; i < qtdCartas - cartasPorLinhaAMenos && i <= limiteCartasPorLinha; i++){
+			
+			System.out.printf("|%s| ", traco.repeat(23)); 
+		
+		}
+	
+		System.out.println();
+
+		// Representação dos número das cartas;
+		// A representação NÃO é o índice das cartas
+		for(int i = 0; i < qtdCartas - cartasPorLinhaAMenos && i <= limiteCartasPorLinha; i++){
+		
+			System.out.printf("%13d%s", i + 1 , " ".repeat(13)); 
+		
+		}
+
+		System.out.println();
+
+	}
+
+	private static void printDeque(){
+	
+		if(qtdCartas > 4){
+			
+			for(int i = 0; i < 2; i++){
+			
+				if(i == 0){
+					imprimeLinha(0, 3);
+				} else {
+					imprimeLinha(4, 2);
+				}
+			}
+
+		} else{
+			imprimeLinha(0, 3);
+		}
+	// Toda vez que mostra o deque, uma carta deve ser tirada do baralho do jogador
+	qtdCartas--;
+
+	} // Fim do printDeque();
 
     public static void batalha(){
 
@@ -182,12 +183,12 @@ public class Batalha{
 			if (pontos[0] < pontos[1]){
 	
 				System.out.println("Você venceu a partida!");
-				pontos[2]++;
+				pontos[3]++;
 	
 			} else {
 			
 				System.out.println("CPU venceu a partida!");
-				pontos[3]++;
+				pontos[2]++;
 			}
 
 			// Limpa os decks do jogador e do CPU
@@ -207,11 +208,11 @@ public class Batalha{
     
 		if(pontos[2] < pontos[3]){
 		
-			System.out.println("Parabéns");
+			System.out.println("Parabéns!");
 
 		} else {
 	
-			System.out.println("GG easy, lixo");
+			System.out.println("GG easy, lixo!");
 
 		}
 
