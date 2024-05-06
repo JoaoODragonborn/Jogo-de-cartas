@@ -25,7 +25,7 @@ class Baralho {
 	private static void collectCards(){
 		try{
 			while(input.hasNext()){
-				cards.add(new Carta(input.next(), input.next(), input.nextInt(), input.next(), input.nextInt()));
+				cards.add(new Carta(input.next().trim(), input.next().trim(), input.nextInt(), input.next().trim(), input.nextInt()));
 			}
 		} catch(NoSuchElementException nsee){
 			System.out.println("Arquivo \"cartas.txt\" mal formatado. Confira se as informações estão organizadas em todo o arquivo.");

@@ -54,7 +54,7 @@ public class Batalha{
 
   	private static void scanContinuar(){
 
-    	System.out.println("Deseja continuar? (S/N)");
+    	System.out.println("\nDeseja continuar? (S/N)");
     
 	    try{
     		continuar = entrada.next().charAt(0); 
@@ -101,7 +101,11 @@ public class Batalha{
 		// A representação NÃO é o índice das cartas
 		for(int i = 0; i < qtdCartas - cartasPorLinhaAMenos && i <= limiteCartasPorLinha; i++){
 		
-			System.out.printf("%13d%s", i + 1 , " ".repeat(13)); 
+			if(cartasPorLinhaAMenos == 4){
+				System.out.printf("%13d%s", i + 5 , " ".repeat(13)); 
+			} else {
+				System.out.printf("%13d%s", i + 1 , " ".repeat(13)); 
+			}
 		
 		}
 
@@ -140,14 +144,14 @@ public class Batalha{
 	//--------------------------------------------
 			for(int i = 0; i < 7; i++){
 				if(partidas == 0){
-					System.out.println("Decidindo quem começa...");
+					System.out.println("\nDecidindo quem começa...");
          			vencedor = Baralho.getRandom(cartas) < 14 ? 0 : 1;
 		    	}
 
 	        	if(vencedor == 0){
     	    
 					//CPU começa
-		        	System.out.println("CPU começa!");
+		        	System.out.println("\nCPU começa!");
          			System.out.printf("|%s|    |%s|\n", traco.repeat(23), traco.repeat(23));
          			System.out.printf("|%-19s %3d| VS |   Escolha sua carta   |\n", 
                             oponente.get(0).getName(), oponente.get(0).getPower());
@@ -158,7 +162,7 @@ public class Batalha{
         
 				} else {
 	       	 		// Jogador começa
-	    	    	System.out.println("Você começa!");
+	    	    	System.out.println("\nVocê começa!\n");
     	    		printDeque();
 	    	    	scanCarta();
     	   			// CPU escolhe carta
@@ -170,10 +174,10 @@ public class Batalha{
         
 				// Imprime quem venceu a rodada
         		if (vencedor == 0){
-	       			System.out.println("CPU venceu a rodada!");
+	       			System.out.println("\nCPU venceu a rodada!");
 			 		pontos[0]++;
 		        } else {	
-    				System.out.println("Você venceu a rodada!");
+    				System.out.println("\nVocê venceu a rodada!");
 					pontos[1]++;
 	       		}
 
@@ -182,12 +186,12 @@ public class Batalha{
 			// Imprime quem venceu a partida
 			if (pontos[0] < pontos[1]){
 	
-				System.out.println("Você venceu a partida!");
+				System.out.printf("\nVocê venceu a partida por %d a %d\n", pontos[1], pontos[0]);
 				pontos[3]++;
 	
 			} else {
 			
-				System.out.println("CPU venceu a partida!");
+				System.out.printf("\nCPU venceu a partida por %d a %d\n", pontos[0], pontos[1]);
 				pontos[2]++;
 			}
 
@@ -204,15 +208,15 @@ public class Batalha{
 		} while(continuar == 's' || continuar == 'S');
 
 		// Imprime o resultado final. Se o jogador perder, é zoado.
-		System.out.printf("Pontuação final:\nCPU %d VS %d Vocẽ\n", pontos[2], pontos[3]);
+		System.out.printf("\nPontuação final:\nCPU %d VS %d Vocẽ\n", pontos[2], pontos[3]);
     
 		if(pontos[2] < pontos[3]){
 		
-			System.out.println("Parabéns!");
+			System.out.println("\nParabéns!");
 
 		} else {
 	
-			System.out.println("GG easy, lixo!");
+			System.out.println("\nGG easy, lixo!");
 
 		}
 
@@ -227,15 +231,20 @@ public class Batalha{
       
       	// Batalha!
       	// Verifica se alguma das cartas é a Vara_de_Pesca
-      	if(jogador.getName() == "Vara_de_Pesca"){
+      	if(jogador.getName().equals("Vara_de_Pesca")){
         	jogador = topo;
-      	} else if(oponente.getName() == "Vara_de_Pesca"){
+			System.out.printf("\nJogador joga a Vara de Pesca! A carta é %d\n", jogador.getName());
+
+      	} else if(oponente.getName().equals("Vara_de_Pesca")){
         	oponente = topo;
+			System.out.printf("\nCPU joga a Vara de Pesca! A carta é %d\n", oponente.getName());
       	}
       	// Verifica se uma das cartas countera a outra
-      	if(jogador.getName() == oponente.getCounter()){
+      	if(jogador.getName().equals(oponente.getCounter())){
+			System.out.println("\nVocê foi counterado pelo CPU!");
         	return 1;
-      	} else if(jogador.getCounter() == oponente.getName()){
+      	} else if(jogador.getCounter().equals(oponente.getName())){
+			System.out.println("\nVocê counterou o CPU!");
         	return 0;
       	}
       	// Usa o switch-case pra ver qual é o tipo de carta do jogador;
@@ -249,11 +258,11 @@ public class Batalha{
         	case "Magia":
           	
 				// Se a carta do oponente for o escudo magico, o jogador foi de base.
-		        if (oponente.getName() == "Escudo_Magico"){
+		        if (oponente.getName().equals("Escudo_Magico")){
         		    return 0;
         
 				// Se a carta do oponente for Magia:
-		        } else if (oponente.getType() == "Magia"){
+		        } else if (oponente.getType().equals("Magia")){
         		    return jogador.getMagic() > oponente.getMagic() ? 1 : 0; 
 		
 				// Se a carta do oponente for relicario, arma branca ou lendaria:
@@ -262,7 +271,7 @@ public class Batalha{
     	      	}
 
 	       	case "Relicario":
-          		if (oponente.getType() == "Relicario"){
+          		if (oponente.getType().equals("Relicario")){
 		            Dictionary<String, Integer> relics = new Hashtable<>();
         		    relics.put("Caldeirao", 200);
 		            relics.put("Escudo_Magico", 10);
